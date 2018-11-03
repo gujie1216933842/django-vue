@@ -29,27 +29,29 @@ SECRET_KEY = ')hh5%z8*-mqy5sumr9l7q#%^(%uso%7nb*3mu8cta*z#qeh+sk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'users.UserProfile'
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'DjangoUeditor',
     'users.apps.UsersConfig',
+    'DjangoUeditor',
     'goods.apps.GoodsConfig',
     'trade.apps.TradeConfig',
     'user_operation.apps.UserOperationConfig',
     'crispy_forms',
+    'django_filters',
     'xadmin',
     'rest_framework',
+    'corsheaders',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -138,3 +140,9 @@ STATICFILES_DIRS = (
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
