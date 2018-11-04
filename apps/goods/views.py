@@ -8,7 +8,7 @@ from .serializer import GoodsSerializer, CategorySerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Goods
 from rest_framework.pagination import PageNumberPagination
-from rest_framework import mixins
+from rest_framework import mixins, filters
 from rest_framework import viewsets
 from .filters import GoodsFilter
 
@@ -34,5 +34,6 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Goods.objects.all()
     serializer_class = GoodsSerializer
     pagination_class = GoodsPagination
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter)
     filter_class = GoodsFilter
+    search_fileds = ('name', 'goods_brief', 'goods_desc')
