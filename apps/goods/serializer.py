@@ -1,20 +1,11 @@
 from rest_framework import serializers
-from .models import Goods
+from .models import Goods,GoodsCategory,Banner,GoodsCategoryBrand
 
 
-# class GoodsSerializer(serializers.Serializer):
-#     name = serializers.CharField(required=True, max_length=100)
-#     click_num = serializers.IntegerField(default=0)
-#
-#     goods_front_image = serializers.ImageField()
-#
-#     def create(self, validated_data):
-#         """
-#         把crate函数重载
-#         :param validated_data:
-#         :return:
-#         """
-#         return Goods.objects.create(**validated_data)
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoodsCategory
+        fields = "__all__"
 
 
 class GoodsSerializer(serializers.ModelSerializer):
